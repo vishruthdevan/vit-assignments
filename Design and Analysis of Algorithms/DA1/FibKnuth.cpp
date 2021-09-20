@@ -1,38 +1,71 @@
-#include<iostream>
+#include <iostream>
 
-void matmul(int a[2][2], int m[2][2]){
-    int w = a[0][0] * m[0][0] + a[0][1] * m[1][0];
-    int x = a[0][0] * m[0][1] + a[0][1] * m[1][1];
-    int y = a[1][0] * m[0][0] + a[1][1] * m[1][0];
-    int z = a[1][0] * m[0][1] + a[1][1] * m[1][1];
+using namespace std;
+int** square(int** F){
+    int a = F[0][0] * F[0][0];
+    int b = F[0][1] * F[0][1];
+    int c = F[1][1] * F[1][1];
 
-    a[0][0] = w;
-    a[0][1] = x;
-    a[1][0] = y;
-    a[1][1] = z;
+    int** mat = new int*[2];
+    mat[0] = new int[2];
+    mat[1] = new int[2];
+
+    mat[0][0] = a + b;
+    mat[0][1] = a - c;
+    mat[1][0] = a - c;
+    mat[1][1] = b + c;
+
+    return mat;
 }
 
-void recur(int a[2][2], int n){
-    if (n==0 || n==1)
-        return;
-    int m[][2] = {{1, 1}, {1, 0}};
+int** multiply(int** F, int** A)
+{       
+    int** mat = new int*[2];
+    mat[0] = new int[2];
+    mat[1] = new int[2];
 
-    recur(a, n/2);
-    matmul(a, m);
+    int x = F[0][0] * A[0][0] +
+            F[0][1] * A[1][0];
+    int y = F[0][0] * A[0][1] +
+            F[0][1] * A[1][1];
+    int z = F[1][0] * A[0][0] +
+            F[1][1] * A[1][0];
+    int w = F[1][0] * A[0][1] +
+            F[1][1] * A[1][1];
 
-    if(n%2!=0){
-        matmul(a, m);
+    mat[0][0] = x;
+    mat[0][1] = y;
+    mat[1][0] = z;
+    mat[1][1] = w;
+
+    return mat;
+}
+
+
+int** fib(int** A, int n){
+    if(n==1){
+        return A;
+    }
+
+    if(n%2==0){
+        int** F = fib(A, n/2);
+        return square(F);
+    }
+
+    else{
+        int** F = fib(A, (n-1)/2);
+        return (square(F), A);
     }
 }
 
-int fib(int n){
-    int a[][2] = {{1, 1}, {1, 0}};
-    if(n==0)
-        return n;
-    recur(a, n-1);
-    return a[0][0]; 
-}
-
 int main(){
-    std::cout<<fib(4);
+    int** A = new int*[2];
+    A[0] = new int[2];
+    A[1] = new int[2];
+    
+    A[0][0] = A[0][1] = A[1][0] = 1;
+    A[1][1] = 0;
+
+    int** F = fib(A, 4);
+    cout << F[0][1];
 }
