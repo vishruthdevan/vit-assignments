@@ -59,46 +59,105 @@ void partition(vector<vector<int>> set){
     for(int p=0; p<set.size(); p++){
         if(f.size()==0){
             f.push_back(vector<vector<int>>{set[p]});
-            cout << "first element\n";
         }
 
         else{
             for(int i = 0; i < f.size(); i++){
                 if(lessthan(set[p], f[i].front())){
-                    cout << "less than\n";
                     f.insert(f.begin() + i, vector<vector<int>>{set[p]});
                     break;
                 }
                 else if(greaterthan(set[p], f[i].front())){
                     continue;
                 }
-                else if(!lessthan(set[p], f[i].front()) && !greaterthan(set[p], f[i].front())){
+                else{
                     f[i].push_back(set[p]);
-                    cout << "this also worked\n";
                     break;
                 }
+                
             }
         }
     }
-    cout << f[0][0][0] << endl;
-    cout << f[0][0][1] << endl;
-    cout << f[0][0][2] << endl;
-    cout << f[1][1][0] << endl;
-    cout << f[1][1][1] << endl;
-    cout << f[1][1][2] << endl;
-    cout << f[1][0][0] << endl;
-    cout << f[1][0][1] << endl;
-    cout << f[1][0][2] << endl;
 
+    for(auto i:f){
+        cout << "-----------" << endl;
+        for(auto j:i){
+            cout << "---" << endl;
+            for(auto k:j){
+                cout << k << endl;
+            }
+            cout << "---" << endl;
+        }
+    }
 }
 
 
-int main(){
-    // if(!lessthan(vector<int>{1, 2, 4}, vector<int>{1, 2, 4}) &&
-    // !greaterthan(vector<int>{1, 2, 4}, vector<int>{1, 2, 4})){
-    //     cout << "yes";
-    // };
+// vector<vector<vector<int>>> f;
 
-    partition(vector<vector<int>>{vector<int>{67, 2, 4}, vector<int>{67, 2, 4}, vector<int>{23, 2, 4}});
+// void merge(vector<vector<int>> &set, int left, int mid, int right){
+//     int len1 = mid - left + 1;
+//     int len2 = right - mid;
+
+//     vector<vector<int>> leftSet(len1);
+//     vector<vector<int>> rightSet(len2);
+
+//     for (int i = 0; i < len1; i++)
+//         leftSet[i] = set[left + i];
+//     for (int j = 0; j < len2; j++)
+//         rightSet[j] = set[mid + 1 + j];
+
+//     int i=0, j=0, k=left;
+
+//     while(i<len1 && j<len2){
+//         if(lessthan(leftSet[i], rightSet[j])){
+//             set[k] = leftSet[i];
+//             i++;
+//         }
+//         else if(greaterthan(leftSet[i], rightSet[j])){
+//             set[k] = rightSet[j];
+//             j++;
+//         }
+
+//         else{
+//             set[k] = leftSet[i];
+//             i++;
+//         }
+//         // if (leftSet[i] <= rightSet[j]) {
+//         //     set[k] = leftSet[i];
+//         //     i++;
+//         // } else {
+//         //     set[k] = rightSet[j];
+//         //     j++;
+//         // }
+//         k++;
+//     }
+
+//     while (i < len1) {
+//         set[k] = leftSet[i];
+//         i++;
+//         k++;
+//     }
+
+//     while (j < len2) {
+//         set[k] = rightSet[j];
+//         j++;
+//         k++;
+//     }
+// }
+
+
+// void partition2(vector<vector<int>> &set, int left, int right){
+//     if (left>=right)
+//         return;
+//     int mid = (left+right)/2;
+//     partition2(set, left, mid);
+//     partition2(set, mid+1, right);
+//     merge(set, left, mid, right);
+// }
+
+int main(){
+    vector<vector<int>> set{vector<int>{67, 6, 4}, vector<int>{67, 5, 4}, vector<int>{23, 2, 4}, vector<int>{22, 4, 4}};
+    vector<int> set2{67, 2, 4, 23, 3, 6};
+    partition(set);
 }
 
