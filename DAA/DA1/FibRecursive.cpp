@@ -12,6 +12,6 @@ int fib(int n){
 }
 
 int main(){
-    cout << fib(4);
+    cout << "fib(4) = "  << fib(4);
     return 0;
 }
