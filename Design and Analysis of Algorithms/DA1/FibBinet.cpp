@@ -5,7 +5,6 @@ using namespace std;
 
 double phi = (sqrt(5) + 1)/2;
 
-
 double fib(int n){
     if (n == 2)
         return phi*phi;

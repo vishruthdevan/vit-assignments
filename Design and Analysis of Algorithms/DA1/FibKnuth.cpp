@@ -1,7 +1,8 @@
 #include <iostream>
 
 using namespace std;
-int** square(int** F){
+
+int** knuthsquare(int** F){
     int a = F[0][0] * F[0][0];
     int b = F[0][1] * F[0][1];
     int c = F[1][1] * F[1][1];
@@ -18,8 +19,7 @@ int** square(int** F){
     return mat;
 }
 
-int** multiply(int** F, int** A)
-{       
+int** multiply(int** F, int** A){
     int** mat = new int*[2];
     mat[0] = new int[2];
     mat[1] = new int[2];
@@ -49,12 +49,12 @@ int** fib(int** A, int n){
 
     if(n%2==0){
         int** F = fib(A, n/2);
-        return square(F);
+        return knuthsquare(F);
     }
 
     else{
         int** F = fib(A, (n-1)/2);
-        return (square(F), A);
+        return (knuthsquare(F), A);
     }
 }
 
