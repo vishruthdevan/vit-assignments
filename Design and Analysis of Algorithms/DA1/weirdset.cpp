@@ -91,7 +91,13 @@ void partition(vector<vector<int>> set){
     }
 }
 
+int main(){
+    vector<vector<int>> set{vector<int>{67, 6, 4}, vector<int>{67, 5, 4}, vector<int>{23, 2, 4}, vector<int>{22, 4, 4}};
+    partition(set);
+}
 
+
+// vector<int> set2{67, 2, 4, 23, 3, 6};
 // vector<vector<vector<int>>> f;
 
 // void merge(vector<vector<int>> &set, int left, int mid, int right){
@@ -154,10 +160,4 @@ void partition(vector<vector<int>> set){
 //     partition2(set, mid+1, right);
 //     merge(set, left, mid, right);
 // }
-
-int main(){
-    vector<vector<int>> set{vector<int>{67, 6, 4}, vector<int>{67, 5, 4}, vector<int>{23, 2, 4}, vector<int>{22, 4, 4}};
-    vector<int> set2{67, 2, 4, 23, 3, 6};
-    partition(set);
-}
 
