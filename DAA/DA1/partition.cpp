@@ -78,16 +78,17 @@ void partition(vector<vector<int>> set){
             }
         }
     }
-
+    int count = 1;
     for(auto i:f){
-        cout << "-----------" << endl;
+        cout << "------F" << count << "------" << endl;
         for(auto j:i){
-            cout << "---" << endl;
             for(auto k:j){
-                cout << k << endl;
+                cout << k << "    ";
             }
-            cout << "---" << endl;
+            cout << "\n";
         }
+        cout << "--------------\n\n\n";
+        count++;
     }
 }
 
