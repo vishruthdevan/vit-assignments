@@ -67,5 +67,5 @@ int main(){
     A[1][1] = 0;
 
     int** F = fib(A, 4);
-    cout << F[0][1];
+    cout << "fib(4) = "  << F[0][1];
 }

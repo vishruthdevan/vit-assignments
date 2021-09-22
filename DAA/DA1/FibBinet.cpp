@@ -15,5 +15,5 @@ double fib(int n){
 }
 
 int main(){
-    cout << round(fib(4)/sqrt(5));
+    cout << "fib(4) = " << round(fib(4)/sqrt(5));
 }
