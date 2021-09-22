@@ -15,7 +15,7 @@ void MinMaxIterative(vector<int> &arr){
 }
 
 int main(){
-    vector<int> arr{12, 23, 34, 45, 56, 67, 78, 89, 90};
+    vector<int> arr{67, 78, 12, 23, 89, 90, 90, 89, 56, 178};
     MinMaxIterative(arr);
     return 0;
 }
