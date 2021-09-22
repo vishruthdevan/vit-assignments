@@ -3,7 +3,7 @@
 #include<limits>
 using namespace std;
 
-void minmax(vector<int> &arr){
+void MinMaxIterative(vector<int> &arr){
     int min = INT_MAX;
     int max = INT_MIN;
     for(int i : arr){
@@ -16,6 +16,6 @@ void minmax(vector<int> &arr){
 
 int main(){
     vector<int> arr{12, 23, 34, 45, 56, 67, 78, 89, 90};
-    minmax(arr);
+    MinMaxIterative(arr);
     return 0;
 }
