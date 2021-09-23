@@ -24,14 +24,10 @@ int** multiply(int** F, int** A){
     mat[0] = new int[2];
     mat[1] = new int[2];
 
-    int x = F[0][0] * A[0][0] +
-            F[0][1] * A[1][0];
-    int y = F[0][0] * A[0][1] +
-            F[0][1] * A[1][1];
-    int z = F[1][0] * A[0][0] +
-            F[1][1] * A[1][0];
-    int w = F[1][0] * A[0][1] +
-            F[1][1] * A[1][1];
+    int x = F[0][0] * A[0][0] + F[0][1] * A[1][0];
+    int y = F[0][0] * A[0][1] + F[0][1] * A[1][1];
+    int z = F[1][0] * A[0][0] + F[1][1] * A[1][0];
+    int w = F[1][0] * A[0][1] + F[1][1] * A[1][1];
 
     mat[0][0] = x;
     mat[0][1] = y;
@@ -54,7 +50,7 @@ int** fib(int** A, int n){
 
     else{
         int** F = fib(A, (n-1)/2);
-        return (knuthsquare(F), A);
+        return multiply(knuthsquare(F), A);
     }
 }
 
