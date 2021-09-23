@@ -87,7 +87,7 @@ void partition(vector<vector<int>> set){
     }
 }
 
-
+vector<vector<int>> deleteIndex;
 
 void merge(vector<vector<vector<int>>> &f, int left, int mid, int right){
     int len1 = mid - left + 1;
@@ -116,7 +116,7 @@ void merge(vector<vector<vector<int>>> &f, int left, int mid, int right){
         else{
             f[k] = leftSet[i];
             f[k].push_back(rightSet[j].front());
-            f.erase(f.begin() + (mid + 1 + j));
+            deleteIndex.push_back(rightSet[j].front());
             i++;
             j++;
         }
@@ -147,15 +147,21 @@ void partition2(vector<vector<vector<int>>> &f, int left, int right){
 }
 
 int main(){
-    vector<vector<int>> set{vector<int>{67, 6, 4}, vector<int>{67, 5, 4}, vector<int>{23, 2, 4}, vector<int>{22, 4, 4}};
+    vector<vector<int>> set{vector<int>{22, 4, 4}, vector<int>{23, 2, 4}, vector<int>{67, 6, 4},  vector<int>{67, 5, 4}};
     vector<vector<vector<int>>> f;
     for(auto i: set){
         f.push_back(vector<vector<int>>{i});
     }
     partition(set);
     cout << "\n\n---------------------------------\n\n\n";
-    // partition2(f, 0, 3);
+    partition2(f, 0, 3);
     int count = 1;
+
+    for(auto i: deleteIndex){
+        auto it = find(f.begin(), f.end(), vector<vector<int>>{i});
+        f.erase(it);
+    }
+
     for(auto i:f){
         cout << "------F" << count << "------" << endl;
         for(auto j:i){
