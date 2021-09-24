@@ -12,16 +12,12 @@ void MinMaxDaC(vector<int> &arr, int &min, int &max, int low, int high){
 
     if(low==high-1){
         if(arr[low]<=arr[high]){
-            if(arr[low]<min)
-                min = arr[low];
-            if(arr[high]>max)
-                max = arr[high];
+            min = arr[low];
+            max = arr[high];
         }
         if(arr[low]>arr[high]){
-            if(arr[high]<min)
-                min = arr[high];
-            if(arr[low]>max)
-                max = arr[low];
+            min = arr[high];
+            max = arr[low];
         }
         return;
     }
@@ -40,11 +36,23 @@ void MinMaxDaC(vector<int> &arr, int &min, int &max, int low, int high){
 }
 
 int main(){
-    vector<int> arr{67, 78, 12, 23, 89, 90, 90, 89, 56, 178};
+    vector<int> arr1{67, 78, 12, 23, 89, 90, 90, 89, 56, 178};
     int min = INT_MAX;
     int max = INT_MIN;
-    MinMaxDaC(arr, min, max, 0, 9);
-    cout << "Minimum: " << min << endl;
+    for(auto i: arr1)
+        cout << i << " ";
+    MinMaxDaC(arr1, min, max, 0, 9);
+    cout << "\nMinimum: " << min << endl;
+    cout << "Maximum: " << max << endl;
+
+    cout << "\n\n";
+    vector<int> arr2{34, 46, 12, 865, 23474, 1231, 8531, 562321, 7474, 1};
+    min = INT_MAX;
+    max = INT_MIN;
+    for(auto i: arr2)
+        cout << i << " ";
+    MinMaxDaC(arr2, min, max, 0, 9);
+    cout << "\nMinimum: " << min << endl;
     cout << "Maximum: " << max << endl;
     return 0;
 }

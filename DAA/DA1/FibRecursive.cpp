@@ -12,6 +12,8 @@ int fib(int n){
 }
 
 int main(){
-    cout << "fib(4) = "  << fib(4);
+    for(int i=0; i<10; i++){
+        printf("fib(%d) = %d\n", i, fib(i));
+    }
     return 0;
 }

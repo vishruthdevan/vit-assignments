@@ -6,8 +6,8 @@ using namespace std;
 double phi = (sqrt(5) + 1)/2;
 
 double fib(int n){
-    if (n == 2)
-        return phi*phi;
+    if (n == 1)
+        return phi;
     else if (n%2 == 0)
         return pow(fib(n/2), 2);
     else
@@ -15,5 +15,7 @@ double fib(int n){
 }
 
 int main(){
-    cout << "fib(4) = " << round(fib(4)/sqrt(5));
+    for(int i=1; i<=10; i++)
+    printf("%d\n", (int)round(fib(i)/sqrt(5)));
+    return 0;
 }

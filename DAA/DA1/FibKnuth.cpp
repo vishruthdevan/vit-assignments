@@ -58,10 +58,15 @@ int main(){
     int** A = new int*[2];
     A[0] = new int[2];
     A[1] = new int[2];
-    
-    A[0][0] = A[0][1] = A[1][0] = 1;
-    A[1][1] = 0;
 
-    int** F = fib(A, 4);
-    cout << "fib(4) = "  << F[0][1];
+    for(int i=0; i<10; i++){
+        if(i==0)
+            printf("fib(0) = 0\n");
+
+        A[0][0] = A[0][1] = A[1][0] = 1;
+        A[1][1] = 0;
+        int** F = fib(A, i);
+        printf("fib(%d) = %d\n", i, F[0][1]);
+    }
+    return 0;
 }
