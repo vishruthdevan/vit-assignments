@@ -15,7 +15,9 @@ double fib(int n){
 }
 
 int main(){
+    cout << "\nfib(0) = 0\n";
     for(int i=1; i<=10; i++)
-    printf("%d\n", (int)round(fib(i)/sqrt(5)));
+    printf("fib(%d) = %d\n", i, (int)round(fib(i)/sqrt(5)));
+    cout << "\n";
     return 0;
 }

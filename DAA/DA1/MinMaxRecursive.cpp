@@ -39,6 +39,7 @@ int main(){
     vector<int> arr1{67, 78, 12, 23, 89, 90, 90, 89, 56, 178};
     int min = INT_MAX;
     int max = INT_MIN;
+    cout << "\n";
     for(auto i: arr1)
         cout << i << " ";
     MinMaxDaC(arr1, min, max, 0, 9);
@@ -54,5 +55,6 @@ int main(){
     MinMaxDaC(arr2, min, max, 0, 9);
     cout << "\nMinimum: " << min << endl;
     cout << "Maximum: " << max << endl;
+    cout << "\n";
     return 0;
 }
