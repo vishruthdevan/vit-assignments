@@ -90,7 +90,7 @@ void partition2(vector<vector<vector<int>>> &f, int left, int right){
 }
 
 int main(){
-    vector<vector<int>> set{vector<int>{22, 4, 4}, vector<int>{23, 2, 4}, vector<int>{67, 6, 4},  vector<int>{67, 5, 4}};
+    vector<vector<int>> set{vector<int>{22, 4, 4}, vector<int>{23, 2, 4}, vector<int>{67, 6, 4},  vector<int>{67, 5, 4}, vector<int>{68,4,5}};
     vector<vector<vector<int>>> f;
     for(auto i: set){
         f.push_back(vector<vector<int>>{i});

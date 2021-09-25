@@ -18,37 +18,53 @@ set Fi (∀i = {1, 2, . . . r}) consists of points which are not comparable to e
 #include<iostream>
 #include<vector>
 #include <algorithm>
-#include <stdio.h>
+#include <iomanip>
 #include <stdlib.h>
 #include<time.h>
 
 using namespace std;
 
-bool lesserthan(vector<int> x, vector<int> y){
-    bool cond1 = true, cond2 = false;
-    for(int i=0; i<x.size(); i++){
-        if(x[i] > y[i]){
-            cond1 = false;
-            break;
+bool lesserthan(vector<int> x, vector<vector<int>> fi){
+    bool cond1, cond2;
+    for(int i=0; i<fi.size(); i++){
+        cond1 = true, cond2 = false;
+        for(int j=0; j<x.size(); j++){
+            if(x[j] > fi[i][j]){
+                cond1 = false;
+            }
+            if(x[j] < fi[i][j])
+                cond2 = true;
         }
-        if(x[i] < y[i])
-            cond2 = true;
+        if(cond1 && cond2)
+        // this condition checks if x is lesser than even one of the vectors in fi,
+        // if true, it would be considered lesser than fi; this condition is added 
+        // due to the ambiguity of the problem for some cases
+            return (cond1 && cond2);
     }
     return (cond1 && cond2);
 }
 
-bool greaterthan(vector<int> x, vector<int> y){
-    bool cond1 = true, cond2 = false;
-    for(int i=0; i<x.size(); i++){
-        if(x[i] < y[i]){
-            cond1 = false;
-            break;
+
+bool greaterthan(vector<int> x, vector<vector<int>> fi){
+    bool cond1, cond2;
+    for(int i=0; i<fi.size(); i++){
+        cond1 = true, cond2 = false;
+        for(int j=0; j<x.size(); j++){
+            if(x[j] < fi[i][j]){
+                cond1 = false;
+            }
+            if(x[j] > fi[i][j])
+                cond2 = true;
         }
-        if(x[i] > y[i])
-            cond2 = true;
+        if(cond1 && cond2)
+        // this condition checks if x is greater than even one of the vectors in fi,
+        // if true, it would be considered greater than fi; this condition is added 
+        // due to the ambiguity of the problem for some cases
+            return (cond1 && cond2);
     }
     return (cond1 && cond2);
 }
+
 
 void partition(vector<vector<int>> set){
     vector<vector<vector<int>>> f;
@@ -56,8 +72,8 @@ void partition(vector<vector<int>> set){
     f.push_back(vector<vector<int>>{set[0]});
     for(int p=1; p<set.size(); p++){
         for(int i=0; i < f.size(); i++){
-            bool cond1 = greaterthan(set[p], f[i].front());
-            bool cond2 = lesserthan(set[p], f[i].front());
+            bool cond1 = greaterthan(set[p], f[i]);
+            bool cond2 = lesserthan(set[p], f[i]);
             if(cond1){
                 f.insert(f.begin() + i, vector<vector<int>>{set[p]});
                 break;
@@ -73,37 +89,39 @@ void partition(vector<vector<int>> set){
                 f[i].push_back(set[p]);
                 break;
             }
-            //f.push_back(vector<vector<int>>{set[p]});
         }
     }
     int count = 1;
     for(auto i:f){
-        cout << "\n------F" << count << "------" << endl;
+        cout << "\n-----------F" << count << "-----------" << endl;
         for(auto j:i){
             for(auto k:j){
-                cout << k << "    ";
+                cout << setfill(' ') << setw(5) << k << "  ";
             }
             cout << "\n";
         }
-        cout << "--------------\n";
+        cout << "------------------------\n";
         count++;
     }
 }
 
 
 int main(){
-    vector<vector<int>> set1{vector<int>{22, 4, 4}, vector<int>{23, 2, 4}, vector<int>{67, 6, 4},  vector<int>{67, 5, 4}};
+    vector<vector<int>> set1{vector<int>{22, 4, 4}, vector<int>{23, 3, 4}, vector<int>{68, 4, 5}, 
+                             vector<int>{67, 6, 4}, vector<int>{67, 5, 4}, vector<int>{1, 3, 1},
+                             vector<int>{0, 1, 2} , vector<int>{1, 0, 3} , vector<int>{123, 69, 420}};
     vector<vector<int>> set2;
 
     srand(time(0));
     for(int i=0; i<5; i++){
         set2.push_back(vector<int>{});
-        for(int j=0; j<2; j++){
-            set2[i].push_back(rand());
+        for(int j=0; j<3; j++){
+            set2[i].push_back(rand()%100);
+            // random set creation
         }
     }
-    cout << "\n\nSet 1:\n";
+    cout << "\n\nSet 1(custom example):\n";
     partition(set1);
-    cout << "\n\nSet 2:\n";
+    cout << "\n\nSet 2(random example):\n";
     partition(set2);
 }

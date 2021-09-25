@@ -1,16 +1,13 @@
 #include <iostream>
-
+#include <vector>
 using namespace std;
 
-int** knuthsquare(int** F){
+vector<vector<int>> knuthsquare(vector<vector<int>> F){
     int a = F[0][0] * F[0][0];
     int b = F[0][1] * F[0][1];
     int c = F[1][1] * F[1][1];
 
-    int** mat = new int*[2];
-    mat[0] = new int[2];
-    mat[1] = new int[2];
-
+    vector<vector<int>> mat{vector<int>(2), vector<int>(2)};
     mat[0][0] = a + b;
     mat[0][1] = a - c;
     mat[1][0] = a - c;
@@ -19,10 +16,8 @@ int** knuthsquare(int** F){
     return mat;
 }
 
-int** multiply(int** F, int** A){
-    int** mat = new int*[2];
-    mat[0] = new int[2];
-    mat[1] = new int[2];
+vector<vector<int>> multiply(vector<vector<int>> F, vector<vector<int>> A){
+    vector<vector<int>> mat{vector<int>(2), vector<int>(2)};
 
     int x = F[0][0] * A[0][0] + F[0][1] * A[1][0];
     int y = F[0][0] * A[0][1] + F[0][1] * A[1][1];
@@ -38,35 +33,28 @@ int** multiply(int** F, int** A){
 }
 
 
-int** fib(int** A, int n){
+vector<vector<int>> fib(vector<vector<int>> A, int n){
     if(n==1){
         return A;
     }
 
     if(n%2==0){
-        int** F = fib(A, n/2);
+        vector<vector<int>> F = fib(A, n/2);
         return knuthsquare(F);
     }
 
     else{
-        int** F = fib(A, (n-1)/2);
-        return multiply(knuthsquare(F), A);
+        return multiply(knuthsquare(fib(A, (n-1)/2)), A);
     }
 }
 
 int main(){
-    int** A = new int*[2];
-    A[0] = new int[2];
-    A[1] = new int[2];
-
-    for(int i=0; i<10; i++){
-        if(i==0)
-            printf("fib(0) = 0\n");
-
-        A[0][0] = A[0][1] = A[1][0] = 1;
-        A[1][1] = 0;
-        int** F = fib(A, i);
-        printf("fib(%d) = %d\n", i, F[0][1]);
+    vector<vector<int>> A{{1, 1}, {1, 0}};
+    cout << "\nfib(0) = 0\n";
+    for(int i=1; i<=10; i++){
+        vector<vector<int>> F = fib(A, i);
+        printf("fib(%d) = %d\n", i, F.at(0).at(1));
     }
+    cout << "\n";
     return 0;
 }
