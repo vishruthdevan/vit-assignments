@@ -90,7 +90,9 @@ void partition2(vector<vector<vector<int>>> &f, int left, int right){
 }
 
 int main(){
-    vector<vector<int>> set{vector<int>{22, 4, 4}, vector<int>{23, 2, 4}, vector<int>{67, 6, 4},  vector<int>{67, 5, 4}, vector<int>{68,4,5}};
+    vector<vector<int>> set{vector<int>{22, 4, 4}, vector<int>{23, 3, 4}, vector<int>{68, 4, 5}, 
+                            vector<int>{67, 6, 4}, vector<int>{67, 5, 4}, vector<int>{1, 3, 1},
+                            vector<int>{0, 1, 2} , vector<int>{1, 0, 3} , vector<int>{123, 69, 420}};
     vector<vector<vector<int>>> f;
     for(auto i: set){
         f.push_back(vector<vector<int>>{i});
@@ -102,7 +104,7 @@ int main(){
         auto it = find(f.begin(), f.end(), vector<vector<int>>{i});
         f.erase(it);
     }
-
+    cout << "Set 1(custom example):\n";
     for(auto i:f){
         cout << "------F" << count << "------" << endl;
         for(auto j:i){
