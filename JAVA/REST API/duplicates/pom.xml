@@ -3,14 +3,14 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>javaDA2</groupId>
-    <artifactId>duplicates-remover</artifactId>
+    <groupId>vishruth.javada2</groupId>
+    <artifactId>duplicates</artifactId>
     <packaging>war</packaging>
     <version>0.0.1-SNAPSHOT</version>
-    <name>duplicates-remover</name>
+    <name>duplicates</name>
 
     <build>
-        <finalName>duplicates-remover</finalName>
+        <finalName>duplicates</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
