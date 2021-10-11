@@ -1,4 +1,4 @@
-package javaDA2.duplicates_remover;
+package vishruth.javada2.duplicates;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
