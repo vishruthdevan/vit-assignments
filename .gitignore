@@ -1,3 +1,6 @@
 *.exe
 .vscode/*
 /JAVA/REST API/restapi/target/
+/JAVA/REST API/restfullapi/nbproject/private/
+/JAVA/REST API/restfullapi/build/
+/JAVA/REST API/restfullapi/dist/
