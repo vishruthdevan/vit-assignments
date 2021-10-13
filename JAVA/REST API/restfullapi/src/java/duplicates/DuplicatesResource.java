@@ -48,7 +48,37 @@ public class DuplicatesResource {
      * @param content representation for the resource
      */
     @PUT
-    @Consumes(MediaType.TEXT_HTML)
-    public void putHtml(String content) {
+    @Consumes(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.TEXT_HTML)
+    public String putHtml(String content) {
+        String arr[] = content.split(" ");
+        String temp;
+        int mindex;
+        for(int i=0; i<arr.length-1; i++){
+            mindex = i;
+            for(int j=i+1; j<arr.length; j++){
+                if(arr[j].compareToIgnoreCase(arr[mindex]) < 0)
+                    mindex=j;
+            }
+            temp = arr[mindex];
+            arr[mindex] = arr[i];
+            arr[i] = temp;
+        }
+        
+        String response = "";
+        
+        int b = 0;
+        arr[b]=arr[0];
+        for(int i=0;i<arr.length;i++){
+            if(!(arr[b].equals(arr[i]))){
+                b++;
+                arr[b] = arr[i];
+            }
+        }
+        System.out.println("check");
+        for(int i=0;i<=b;i++){
+            response += " " + arr[i];
+        }
+        return "<html><body>" + response +"</body></html>";
     }
 }
