@@ -75,10 +75,12 @@ public class DuplicatesResource {
                 arr[b] = arr[i];
             }
         }
-        System.out.println("check");
         for(int i=0;i<=b;i++){
             response += " " + arr[i];
         }
-        return "<html><body>" + response +"</body></html>";
+        return "<html><body>" +
+                "<h2>Duplicates removed:</h2>" +
+                "<p>" + response + "</p>" +
+                "</body></html>";
     }
 }
