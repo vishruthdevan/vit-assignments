@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package duplicates;
+package restfullclient;
 
+import java.util.Scanner;
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
@@ -14,7 +15,7 @@ import javax.ws.rs.client.WebTarget;
  * [duplicates]<br>
  * USAGE:
  * <pre>
- *        RestfullClient client = new RestfullClient();
+ *        DuplicatesResourceClient client = new DuplicatesResourceClient();
  *        Object response = client.XXX(...);
  *        // do whatever with response
  *        client.close();
@@ -22,13 +23,13 @@ import javax.ws.rs.client.WebTarget;
  *
  * @author vishr
  */
-public class RestfullClient {
+public class DuplicatesResourceClient {
 
     private WebTarget webTarget;
     private Client client;
     private static final String BASE_URI = "http://localhost:8080/restfullapi/webresources";
 
-    public RestfullClient() {
+    public DuplicatesResourceClient() {
         client = javax.ws.rs.client.ClientBuilder.newClient();
         webTarget = client.target(BASE_URI).path("duplicates");
     }
@@ -38,8 +39,15 @@ public class RestfullClient {
         return resource.request(javax.ws.rs.core.MediaType.TEXT_HTML).get(String.class);
     }
 
+    public String getResult() throws ClientErrorException {
+        WebTarget resource = webTarget;
+        return resource.request(javax.ws.rs.core.MediaType.TEXT_PLAIN).get(String.class);
+    }
+
     public String putHtml(Object requestEntity) throws ClientErrorException {
-        return webTarget.request(javax.ws.rs.core.MediaType.TEXT_HTML).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.TEXT_PLAIN), String.class);
+        return webTarget
+                .request(javax.ws.rs.core.MediaType.TEXT_HTML)
+                .put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.TEXT_PLAIN), String.class);
     }
 
     public void close() {
@@ -47,8 +55,12 @@ public class RestfullClient {
     }
     
     public static void main(String args[]){
-        RestfullClient rs = new RestfullClient();
-        String s = "1 1 2 3 21 1 121 21 1243 1 1";
-        System.out.println(rs.putHtml(s));
+        DuplicatesResourceClient rs = new DuplicatesResourceClient();
+        Scanner s = new Scanner(System.in);
+        System.out.println("Enter the array to remove duplicates:");
+        String input = s.nextLine();
+        rs.putHtml(input);
+        System.out.println("After removing duplicates:");
+        System.out.println(rs.getResult());
     }
 }

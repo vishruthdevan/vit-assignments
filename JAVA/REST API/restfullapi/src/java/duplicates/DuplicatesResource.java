@@ -21,10 +21,10 @@ import javax.ws.rs.core.MediaType;
  */
 @Path("duplicates")
 public class DuplicatesResource {
-
+    
     @Context
     private UriInfo context;
-
+    static String response = "";
     /**
      * Creates a new instance of DuplicatesResource
      */
@@ -38,19 +38,38 @@ public class DuplicatesResource {
     @GET
     @Produces(MediaType.TEXT_HTML)
     public String getHtml() {
-        return "<html><body><h1>Hello, World!!</body></h1></html>";
+        String getResponse = "<html><body><h2>Java RESTFul Web Service</h2>"
+                + "<h3>Digital Assignment - 1</h3>"
+                + "<h4>Vishruth Devan(20BCE2953)</h4>"
+                + "</body></html>";
+        return getResponse;
         //TODO return proper representation object
         //throw new UnsupportedOperationException();
     }
 
+    
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getResult(){
+        return response;
+    }
     /**
      * PUT method for updating or creating an instance of DuplicatesResource
      * @param content representation for the resource
+     * @return 
      */
     @PUT
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.TEXT_HTML)
     public String putHtml(String content) {
+        removeDuplicates(content);
+        return "<html><body>" +
+                "<h1>Finished removing duplicates, use GET to access new array</h1>" +
+                "</body></html>";
+    }
+    
+    public void removeDuplicates(String content){
+        response = "";
         String arr[] = content.split(" ");
         String temp;
         int mindex;
@@ -65,22 +84,16 @@ public class DuplicatesResource {
             arr[i] = temp;
         }
         
-        String response = "";
-        
         int b = 0;
         arr[b]=arr[0];
-        for(int i=0;i<arr.length;i++){
-            if(!(arr[b].equals(arr[i]))){
+        for (String arr1 : arr) {
+            if (!(arr[b].equals(arr1))) {
                 b++;
-                arr[b] = arr[i];
+                arr[b] = arr1;
             }
         }
         for(int i=0;i<=b;i++){
             response += " " + arr[i];
         }
-        return "<html><body>" +
-                "<h2>Duplicates removed:</h2>" +
-                "<p>" + response + "</p>" +
-                "</body></html>";
     }
 }
