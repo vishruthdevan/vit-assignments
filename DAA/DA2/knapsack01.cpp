@@ -38,6 +38,7 @@ int main(){
                 V[k][w] = max(
                     V[k - 1][w],
                     items[k].value + V[k - 1][w - items[k].weight]);
+                //V[k,v] = max{V[k-1,w], V[k-1, w-w(k)] + V(k) 
             }
             else
                 V[k][w] = V[k-1][w];
@@ -51,7 +52,7 @@ int main(){
 
     cout << "\nMaximum value of knapsack: " << V[n][W] << "\n\n";
 
-    cout << "Item\tValue\tWeight\n";
+    cout << "Included items:\nItem\tValue\tWeight\n";
 
     while(n>0 && W>0){
         if(V[n][W] == V[n-1][W]){
