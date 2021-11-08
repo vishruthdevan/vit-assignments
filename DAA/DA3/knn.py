@@ -26,4 +26,4 @@ def knn(points, p, k=3):
 
 
 if __name__ == '__main__':
-    knn()
+    knn({}, [],)
