@@ -3,7 +3,9 @@ import math
 
 def knn(points, p, k=3):
     distance = []
+    frequencies = {}
     for group in points:
+        frequencies[group] = 0
         for point in points[group]:
             euclidean_distance = 0
             for i, j in zip(point, p):
@@ -13,16 +15,13 @@ def knn(points, p, k=3):
             # Add a tuple of form (distance,group) in the distance list
             distance.append((euclidean_distance, group))
     distance = sorted(distance)[:k]
-    freq1 = 0  # frequency of group 0
-    freq2 = 0  # frequency og group 1
-
     for d in distance:
-        if d[1] == 'B':
-            freq1 += 1
-        elif d[1] == 'M':
-            freq2 += 1
-
-    return 'B' if freq1 > freq2 else 'M'
+        frequencies[d[1]] += 1
+    max = list(frequencies.keys())[0]
+    for i in frequencies:
+        if frequencies[i] > max:
+            max = i
+    return max
 
 
 if __name__ == '__main__':
