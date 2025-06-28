@@ -53,6 +53,44 @@ int greaterthan(vector<int> x, vector<int> y){
         return false;
 }
 
+void partition(vector<vector<int>> set){
+    vector<vector<vector<int>>> f;
+    int i=0;
+    for(int p=0; p<set.size(); p++){
+        if(f.size()==0){
+            f.push_back(vector<vector<int>>{set[p]});
+            cout << "first element\n";
+        }
+
+        else{
+            for(int i = 0; i < f.size(); i++){
+                if(lessthan(set[p], f[i].front())){
+                    cout << "less than\n";
+                    f.insert(f.begin() + i, vector<vector<int>>{set[p]});
+                    break;
+                }
+                else if(greaterthan(set[p], f[i].front())){
+                    continue;
+                }
+                else if(!lessthan(set[p], f[i].front()) && !greaterthan(set[p], f[i].front())){
+                    f[i].push_back(set[p]);
+                    cout << "this also worked\n";
+                    break;
+                }
+            }
+        }
+    }
+    cout << f[0][0][0] << endl;
+    cout << f[0][0][1] << endl;
+    cout << f[0][0][2] << endl;
+    cout << f[1][1][0] << endl;
+    cout << f[1][1][1] << endl;
+    cout << f[1][1][2] << endl;
+    cout << f[1][0][0] << endl;
+    cout << f[1][0][1] << endl;
+    cout << f[1][0][2] << endl;
+
+}
 
 
 int main(){
