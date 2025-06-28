@@ -37,15 +37,30 @@ int lessthan(vector<int> x, vector<int> y){
         return false;
 }
 
-
-void partition(vector<vector<int>> set){
-    
+int greaterthan(vector<int> x, vector<int> y){
+    bool cond1 = true, cond2 = false;
+    for(int i=0; i<x.size(); i++){
+        if(x[i] < y[i]){
+            cond1 = false;
+            break;
+        }
+        if(x[i] > y[i])
+            cond2 = true;
+    }
+    if(cond1 && cond2)
+        return true;
+    else
+        return false;
 }
 
 
+
 int main(){
-    if(lessthan(vector<int>{1, 1, 4}, vector<int>{1, 2, 4})){
-        cout << "yes";
-    };
+    // if(!lessthan(vector<int>{1, 2, 4}, vector<int>{1, 2, 4}) &&
+    // !greaterthan(vector<int>{1, 2, 4}, vector<int>{1, 2, 4})){
+    //     cout << "yes";
+    // };
+
+    partition(vector<vector<int>>{vector<int>{67, 2, 4}, vector<int>{67, 2, 4}, vector<int>{23, 2, 4}});
 }
 
